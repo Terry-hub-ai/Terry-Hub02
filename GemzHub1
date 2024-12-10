@@ -1,0 +1,176 @@
+-- Load Orion Library
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+
+-- Create Window
+local Window = OrionLib:MakeWindow({
+    Name = "Terry Hub",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "TerryHub"
+})
+
+-- Animation Tab
+local AnimationTab = Window:MakeTab({
+    Name = "Animation",
+    Icon = "rbxassetid://6031302934", -- Replace with a suitable icon
+    PremiumOnly = false
+})
+
+AnimationTab:AddLabel("Total Animations: 10")
+AnimationTab:AddLabel("Important! Use the correct animation.")
+
+AnimationTab:AddButton({
+    Name = "Winged Master (R6 Only)",
+    Callback = function()
+        print("Winged Master animation executed!")
+        -- Add animation code here
+    end
+})
+
+AnimationTab:AddButton({
+    Name = "Rickroll Dance (R6 Only)",
+    Callback = function()
+        print("Rickroll Dance animation executed!")
+        -- Add animation code here
+    end
+})
+
+-- Player Tab
+local PlayerTab = Window:MakeTab({
+    Name = "Player",
+    Icon = "rbxassetid://6031302950",
+    PremiumOnly = false
+})
+
+PlayerTab:AddSlider({
+    Name = "Walk Speed",
+    Min = 16,
+    Max = 200,
+    Default = 16,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "Speed",
+    Callback = function(value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+    end
+})
+
+PlayerTab:AddSlider({
+    Name = "Jump Power",
+    Min = 50,
+    Max = 500,
+    Default = 50,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "Power",
+    Callback = function(value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+    end
+})
+
+-- Hubs Tab
+local HubsTab = Window:MakeTab({
+    Name = "Hubs",
+    Icon = "rbxassetid://6034509993",
+    PremiumOnly = false
+})
+
+HubsTab:AddButton({
+    Name = "Hub 1",
+    Callback = function()
+        print("Hub 1 loaded!")
+        -- Add hub loading code here
+    end
+})
+
+HubsTab:AddButton({
+    Name = "Hub 2",
+    Callback = function()
+        print("Hub 2 loaded!")
+        -- Add hub loading code here
+    end
+})
+
+-- Community Tab (Discord Server Link)
+local CommunityTab = Window:MakeTab({
+    Name = "Community",
+    Icon = "rbxassetid://6031302949",
+    PremiumOnly = false
+})
+
+CommunityTab:AddButton({
+    Name = "Join Discord",
+    Callback = function()
+        setclipboard("https://discord.gg/YourServerInvite")
+        OrionLib:MakeNotification({
+            Name = "Discord Link",
+            Content = "Discord invite copied to clipboard!",
+            Image = "rbxassetid://6031280882",
+            Time = 5
+        })
+    end
+})
+
+-- Games Tab (Game-Specific Scripts)
+local GamesTab = Window:MakeTab({
+    Name = "Games",
+    Icon = "rbxassetid://6034509991",
+    PremiumOnly = false
+})
+
+GamesTab:AddButton({
+    Name = "Game Script 1",
+    Callback = function()
+        print("Game script 1 executed!")
+        -- Add game-specific script code here
+    end
+})
+
+GamesTab:AddButton({
+    Name = "Game Script 2",
+    Callback = function()
+        print("Game script 2 executed!")
+        -- Add game-specific script code here
+    end
+})
+
+-- Admin Commands Tab
+local AdminTab = Window:MakeTab({
+    Name = "Admin Commands",
+    Icon = "rbxassetid://6031302941",
+    PremiumOnly = false
+})
+
+AdminTab:AddTextbox({
+    Name = "Command Input",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(command)
+        print("Admin Command: " .. command)
+        -- Add code to handle admin commands here
+    end
+})
+
+AdminTab:AddButton({
+    Name = "God Mode",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        character.Humanoid.MaxHealth = math.huge
+        character.Humanoid.Health = math.huge
+        print("God Mode activated!")
+    end
+})
+
+-- Credits Tab
+local CreditsTab = Window:MakeTab({
+    Name = "Credits",
+    Icon = "rbxassetid://6031280882",
+    PremiumOnly = false
+})
+
+CreditsTab:AddLabel("Terry Hub made by Terry")
+CreditsTab:AddLabel("Beta Test")
+
+-- Initialize
+OrionLib:Init()
